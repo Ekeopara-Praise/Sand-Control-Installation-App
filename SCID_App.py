@@ -138,7 +138,7 @@ with col1:
 
 with col2:
     # Display logo image in the center column
-    st.image("app_logo1.PNG")
+    st.image('app_logo.PNG')
 
 with col3:
     st.write("")
@@ -147,7 +147,7 @@ tab1, tab2 = st.tabs(["**Sand Control**", "**About**"])
 
 with tab1:
     # Display an image in the sidebar
-    st.sidebar.image("app_background.png", width=290)
+    st.sidebar.image('app_background.PNG', width=290)
     st.write("")
 
     # Add a caption and link to the author's LinkedIn profile in the sidebar
