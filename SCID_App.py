@@ -1,10 +1,10 @@
 # import libraries
 from dataclasses import dataclass
 import streamlit as st
-from PIL import Image
+import matplotlib.image as mpimg
 
-image_frontpage = Image.open('app_logo1.PNG')
-image_background = Image.open('app_background.png.PNG')
+image_frontpage = mpimg.imread('app_logo1.PNG')
+image_background = mpimg.imread('app_background.png.PNG')
 
 
 @dataclass
