@@ -1,6 +1,11 @@
 # import libraries
 from dataclasses import dataclass
 import streamlit as st
+from PIL import Image
+
+image_frontpage = Image.open('app_logo1.PNG')
+image_background = Image.open('app_background.png.PNG')
+
 
 @dataclass
 class Sand_Installation:
@@ -138,7 +143,7 @@ with col1:
 
 with col2:
     # Display logo image in the center column
-    st.image("app_logo1.PNG")
+    st.image(image_frontpage)
 
 with col3:
     st.write("")
@@ -147,7 +152,7 @@ tab1, tab2 = st.tabs(["**Sand Control**", "**About**"])
 
 with tab1:
     # Display an image in the sidebar
-    st.sidebar.image("app_background.png", width=290)
+    st.sidebar.image(image_background, width=290)
     st.write("")
 
     # Add a caption and link to the author's LinkedIn profile in the sidebar
@@ -305,7 +310,7 @@ with tab2:
         """
         **SCID** is a **S**and **C**ontrol **I**nstallation **D**ecision-making software designed for Production and other Energy experts 
         for faster and reliable decision making on whether to install Sand Control facilities or not. 
-        
+
         It's credibility is attributed to it's vast factor considerations leveraging various information of the well 
         such as; 
 
@@ -314,9 +319,9 @@ with tab2:
         3. Completion types
         4. Environmental impact information
         5. Economic feasibility information
-        
+
         Enjoy the decision making power of **SCID** with a simple click on the "**Recommend**" button !
-        
-        
+
+
         ### Have a demo today!
         """)
