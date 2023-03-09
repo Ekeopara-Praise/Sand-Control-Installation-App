@@ -260,7 +260,7 @@ with tab1:
         with col2:
             environmental_impact = st.selectbox(
                 "**Environmental impact**",
-                ("High", "Low"),
+                ("Positive", "Negative"),
                 key='environmental_impact',
                 help="""
                 Select the suitable environmental impact of the project.
