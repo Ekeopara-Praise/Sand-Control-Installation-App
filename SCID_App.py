@@ -287,8 +287,11 @@ with tab1:
     col1, col2 = st.columns(2)
     with col1:
         if st.button(label="Recommend", help='Click to recommend Sand Control installation'):
+            if economic_data == 0 and environmental_data == 0:
+                col2.write('<span style="color: red;">**Do not Install Sand Control Facilities!**</span>',
+                           unsafe_allow_html=True)
             # Display a recommendation based on the most common item in the list
-            if most_common == 1:
+            elif most_common == 1:
                 col2.write('<span style="color: red;">**Install Sand Control Facilities!**</span>',
                            unsafe_allow_html=True)
             elif most_common == 0:
