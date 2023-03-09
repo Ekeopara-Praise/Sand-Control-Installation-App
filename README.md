@@ -37,7 +37,7 @@ streamlit run SCID_App.py
 ```
 ## Homepage
 At the homepage you will see the app running, once clicked on the Recommend button after entering necessary inputs, will apear this way;
-![image](https://github.com/Ekeopara-Praise/Sand-Control-Installation-App/blob/master/SCID_Homepage.jpeg)
+![image](https://github.com/Ekeopara-Praise/Sand-Control-Installation-App/blob/master/SCID_Homepage.PNG)
 ## Acknowledgement
 The following resources were helpful throughout the project
 - [Streamlit](https://streamlit.io/)

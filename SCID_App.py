@@ -6,55 +6,49 @@ import streamlit as st
 class Sand_Installation:
     """A class to assess the feasibility of installing sand control in an oil well."""
 
-    def Reservoir_Data(self, consolidation_type: str, permeability: str, grain_size: str, fluid_viscosity: str) -> int:
+    def Reservoir_Data(self, compressive_strength: float, permeability: float, porosity: float, fluid_viscosity: float) -> int:
         """
         A function to determine if sand control installation is required based on reservoir data.
 
         Args:
-            consolidation_type (str): The consolidation type of the formation.
-            permeability (str): The permeability range of the formation.
-            grain_size (str): The size of the grains in the formation.
-            fluid_viscosity (str): The viscosity of the fluid in the formation.
+            compressive_strength (float): The compressive_strength of the formation rock.
+            permeability (float): The permeability of the formation.
+            porosity (float): The porosity of the formation.
+            fluid_viscosity (float): The viscosity of the fluid in the formation.
 
         Returns:
             int: 1 if sand control installation is required, 0 otherwise.
         """
         decision_list = []
-        if consolidation_type == 'consolidated':
-            decision_list.append(0)
-        elif consolidation_type == 'poorly or weakly consolidated':
+        if compressive_strength > 1000:
             decision_list.append(1)
         else:
             decision_list.append(0)
 
-        if permeability == '500 to 800':
+        if 500 <= permeability <= 8000:
             decision_list.append(1)
         else:
             decision_list.append(0)
 
-        if grain_size == 'Large':
+        if porosity > 30:
             decision_list.append(1)
-        elif grain_size == 'Small':
-            decision_list.append(0)
         else:
             decision_list.append(0)
 
-        if fluid_viscosity == 'High':
+        if fluid_viscosity >= 1000:
             decision_list.append(1)
-        elif fluid_viscosity == "Low":
-            decision_list.append(0)
         else:
             decision_list.append(0)
 
         return 1 if 1 in decision_list else 0
 
-    def Production_Data(self, production_rate: str, water_cut: str) -> int:
+    def Production_Data(self, production_rate: str, water_cut: float) -> int:
         """
         A function to determine if sand control installation is required based on production data.
 
         Args:
             production_rate (str): The production rate of the well.
-            water_cut (str): The water cut of the well.
+            water_cut (float): The water cut of the well.
 
         Returns:
             int: 1 if sand control installation is required, 0 otherwise.
@@ -67,10 +61,8 @@ class Sand_Installation:
         else:
             decision_list.append(0)
 
-        if water_cut == 'High':
+        if water_cut > 40:
             decision_list.append(1)
-        elif water_cut == 'Low':
-            decision_list.append(0)
         else:
             decision_list.append(0)
 
@@ -165,39 +157,34 @@ with tab1:
 
         # Add a selectbox for "Rock Consolidation" in the first column with a description in the help tooltip
         with col1:
-            rock_consolidation = st.selectbox(
-                "**Rock Consolidation**",
-                ("consolidated", "poorly consolidated"),
+            rock_compressive_strength = st.number_input(
+                "**Rock strength (psi)**",
                 help="""
-                Select the suitable Rock consolidation type.
+                Enter the Rock compressive strength.
                 """,
             )
 
         # Add a selectbox for "Permeability (mD)" in the second column with a description in the help tooltip
         with col2:
-            perm = st.selectbox(
+            perm = st.number_input(
                 "**Permeability (mD)**",
-                ('500 to 800', 'Other'),
                 help="""
-                Select the reservoir permeability range in mD.
+                Enter the reservoir permeability mD.
                 """,
             )
 
         # Add a selectbox for "Grain size" in the third column with a description in the help tooltip
         with col3:
-            grainSize = st.selectbox(
-                "**Grain size**",
-                ('Large', 'Small', 'None'),
-                help="Select suitable grain size description",
+            poro = st.number_input(
+                "**Porosity (%)**",
+                help="Enter the formation porosity",
             )
 
         # Add a selectbox for "Fluid viscosity" in the fourth column with a description in the help tooltip
         with col4:
-            fluid_visco = st.selectbox(
-                "**Fluid viscosity**",
-                ('High', 'Low', 'None'),
-                key="filter_keyword4",
-                help="Select the suitable Fluid viscosity description")
+            fluid_visco = st.number_input(
+                "**Fluid viscosity (cP)**",
+                help="Enter the suitable Fluid viscosity")
 
     # Add a heading for the "Production & Completion Data" section
     st.write('**Production & Completion Data**')
@@ -211,17 +198,15 @@ with tab1:
             prod_rate = st.selectbox(
                 "**Production rate**",
                 ("Above critical rate", 'Below critical rate', "None"),
-                key='Test',
                 help="""
-                Select the suitable production rate condition.
+                Enter the suitable production rate condition.
                 """,
             )
 
         # Add a selectbox for "Water cut" in the second column with a description in the help tooltip
         with col2:
-            waterCut = st.selectbox(
-                "**Water cut**",
-                ("High", "Low"),
+            waterCut = st.number_input(
+                "**Water cut (%)**",
                 help="""
                 Select the suitable Degree of Water cut.
                 """,
@@ -271,7 +256,7 @@ with tab1:
     sand_control = Sand_Installation()
 
     # Calculate the reservoir_data, production_data, completion_data, economic_data, and environmental_data based on the input
-    reservoir_data = sand_control.Reservoir_Data(rock_consolidation, perm, grainSize, fluid_visco)
+    reservoir_data = sand_control.Reservoir_Data(rock_compressive_strength, perm, poro, fluid_visco)
     production_data = sand_control.Production_Data(prod_rate, waterCut)
     completion_data = sand_control.Well_Completion_Data(completionType)
     economic_data = sand_control.Economic_Data(feasibility)
