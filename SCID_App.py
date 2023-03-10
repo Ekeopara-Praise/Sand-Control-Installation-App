@@ -112,7 +112,7 @@ class Sand_Installation:
         Returns:
             int: 1 if the impact is positive, otherwise 0.
         """
-        if impact == 'Positive':  # if the user selects positive environmental impact
+        if impact == 'Minimal':  # if the user selects positive environmental impact
             return 1  # return 1
         else:  # if the user selects negative environmental impact
             return 0  # return 0
@@ -245,7 +245,7 @@ with tab1:
         with col2:
             environmental_impact = st.selectbox(
                 "**Environmental impact**",
-                ("Positive", "Negative"),
+                ("Minimal", "Maximal"),
                 key='environmental_impact',
                 help="""
                 Select the suitable environmental impact of the project.
