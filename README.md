@@ -41,7 +41,7 @@ At the homepage you will see the app running, once clicked on the Recommend butt
 ![image](https://github.com/Ekeopara-Praise/Sand-Control-Installation-App/blob/master/SCID_Homepage.PNG)
 
 ## Demo
-Check out the [app](https://ekeopara-praise-gas-lift-app-glid-app-cgivko.streamlit.app/)
+Check out the [app](https://ekeopara-praise-sand-control-installation-app-scid-app-2i5j1w.streamlit.app/)
 
 ## Acknowledgement
 The following resources were helpful throughout the project
